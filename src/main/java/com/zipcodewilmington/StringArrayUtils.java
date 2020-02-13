@@ -160,15 +160,17 @@ public class StringArrayUtils {
         int arrayLength = array.length -1;
         String[] newArray = new String[arrayLength];
 
-        for(int x = 0; x <= array.length -2; x++){
-            String holder = array[x];
+        int currentIndx = 0;
 
+        for(int x = 0; x < array.length; x++){
             if(array[x] == valueToRemove){
-                x = x - 1;
-            }else {
-                newArray[x] = holder;
+
+            }else{
+                newArray[currentIndx] = array[x];
+                currentIndx++;
             }
         }
+
         return newArray;
     }
 
@@ -177,17 +179,81 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
-    }
+        String[] places = new String[array.length];
+        places[0] = array[0];
+        int numOfGroups = 1;
 
+        for (int i = 1; i <= array.length -1; i++){
+            String passer = "XX";
+            String actual = array[i];
+            if(array[i].equals(array[i-1])){
+                places[i] = passer;
+            }else{
+                numOfGroups++;
+                places[i] = actual;
+            }
+        }
+        String[] answer = new String[numOfGroups];
+        int counter = 0;
+
+        for(int x = 0; x <= array.length -1; x++) {
+            if(places[x].equals("XX")){
+
+            }else if(!places[x].equals("XX")){
+                answer[counter] = places[x];
+                counter++;
+            }
+        }
+        return answer;
+    }
     /**
      * @param array array of chars
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
-    }
 
+        String[] places = new String[array.length];
+        int numOfGroups = 0;
+
+        for (int i = 0; i <= array.length - 1; i++) {
+            String passer = "XX";
+            String actual = array[i];
+            if (i == 0) {
+                places[i] = array[i];
+                numOfGroups++;
+            } else if (array[i].equals(array[i - 1])) {
+                places[i] = passer;
+            } else {
+                numOfGroups++;
+                places[i] = actual;
+            }
+        }
+
+        String[] answer = new String[numOfGroups];
+        int counter = 0;
+        int firstRun = 1;
+        String current = "";
+
+        for (int x = 0; x <= array.length - 1; x++) {
+
+            if (firstRun == 1) {
+                answer[0] = places[0];
+                firstRun = 0;
+                current = answer[0];
+
+            } else if (places[x].equals("XX")) {
+                answer[counter] += current;
+
+            } else if (!places[x].equals("XX")) {
+                counter++;
+                answer[counter] = places[x];
+                current = places[x];
+            }
+
+
+        }
+        return answer;
+    }
 
 }
 

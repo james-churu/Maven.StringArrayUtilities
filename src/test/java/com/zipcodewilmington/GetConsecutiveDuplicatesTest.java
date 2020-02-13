@@ -12,10 +12,11 @@ public class GetConsecutiveDuplicatesTest {
         String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
         String[] actual = StringArrayUtils.removeConsecutiveDuplicates(array);
         String[] expected = {"aba", "baa", "bab", "bba", "bbb"};
-        Assert.assertEquals(actual, expected);
+        Assert.assertEquals(expected,actual);
     }
 
-
+//      {"t", "t","t","q", "a", "a", "a", "b", "c", "c", "a", "a", "d", "e", "e", "e"}
+    //   0t 1t 2t
 
     @Test
     public void testRemoveConsecutiveDuplicates2() {

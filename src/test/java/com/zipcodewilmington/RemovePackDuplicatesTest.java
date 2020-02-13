@@ -9,6 +9,7 @@ public class RemovePackDuplicatesTest {
     @Test
     public void testRemovePackDuplicates1() {
         String[] array = {"a", "a", "a", "b", "c", "c", "a", "a", "d"};
+                        // A
         String[] expected = {"aaa", "b", "cc", "aa", "d"};
         String[] actual = StringArrayUtils.packConsecutiveDuplicates(array);
         Assert.assertEquals(expected, actual);
